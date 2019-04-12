@@ -1,6 +1,6 @@
 /*
-Package tidbtest 用于测试tidb在多客户端并发执行sql时能发保持准确性
-TODO:加入测试结果的验证方法，以及更加
+Package tidbtest 用于测试tidb并发执行事务隔离性
+TODO:加入测试结果的验证方法
 */
 package tidbtest
 
