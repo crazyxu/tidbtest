@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"log"
 
 	//mysql driver
 	_ "github.com/go-sql-driver/mysql"
@@ -35,7 +34,6 @@ func newTiDB(cfg DbConfig) (*tiDB, error) {
 }
 
 func (db *tiDB) exec(ctx context.Context, sql string) error {
-	log.Print(sql)
 	if db == nil {
 		return errors.New("db is nil")
 	}
