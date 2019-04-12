@@ -1,6 +1,7 @@
 package tidbtest
 
 import (
+	"context"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -19,6 +20,6 @@ func TestTiDB(t *testing.T) {
 	assert.Equal(t, nil, err)
 	defer db.close()
 
-	err = db.exec("show tables;")
+	err = db.exec(context.Background(), "show tables;")
 	assert.Equal(t, nil, err)
 }

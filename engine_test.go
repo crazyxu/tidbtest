@@ -11,7 +11,7 @@ func TestRun(t *testing.T) {
 	//初始化测试表
 	db, err := newTiDB(testDbConfig)
 	assert.Equal(t, nil, err)
-	err = db.exec(`
+	err = db.exec(context.Background(), `
 	DROP TABLE IF EXISTS accounts;
 	CREATE TABLE IF NOT EXISTS accounts(
 		id int primary key AUTO_INCREMENT,

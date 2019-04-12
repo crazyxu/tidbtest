@@ -1,6 +1,7 @@
 package tidbtest
 
 import (
+	"context"
 	"database/sql"
 	"errors"
 	"fmt"
@@ -33,12 +34,12 @@ func newTiDB(cfg DbConfig) (*tiDB, error) {
 	}, nil
 }
 
-func (db *tiDB) exec(sql string) error {
+func (db *tiDB) exec(ctx context.Context, sql string) error {
 	log.Print(sql)
 	if db == nil {
 		return errors.New("db is nil")
 	}
-	_, err := db.client.Exec(sql)
+	_, err := db.client.ExecContext(ctx, sql)
 	if err != nil {
 		return fmt.Errorf("execute sql error %s", err)
 	}

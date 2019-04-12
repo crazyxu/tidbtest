@@ -1,3 +1,7 @@
+/*
+Package tidbtest 用于测试tidb在多客户端并发执行sql时能发保持准确性
+TODO:加入测试结果的验证方法，以及更加
+*/
 package tidbtest
 
 import (
@@ -85,7 +89,7 @@ func (r *worker) work(ctx context.Context) error {
 			r.currentIdx, len(r.sqls))
 	}
 
-	if err := r.db.exec(r.sqls[r.currentIdx]); err != nil {
+	if err := r.db.exec(ctx, r.sqls[r.currentIdx]); err != nil {
 		return fmt.Errorf(`exec sql "%s" error %s`, r.sqls[r.currentIdx], err)
 	}
 	r.currentIdx++
